@@ -10,5 +10,9 @@
   {
     "directory": "/storage/emulated/0/Pictures/Instagram",
     "mode":"Filename"
+  },
+  {
+    "directory": "/storage/emulated/0/Pictures/GCash",
+    "mode": "${Filename;s/GCash.*(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})(\\d{2}).*/$3:$2:$1 $4:$5:$6/}"
   }
 ]
