@@ -1,6 +1,7 @@
 
-LOG_FILE="$HOME/exif_sync.log"
-CONFIG_FILE="$(dirname "$0")/config.json"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOG_FILE="$SCRIPT_DIR/exif_sync.log"
+CONFIG_FILE="$SCRIPT_DIR/config.json"
 
 log_msg() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
