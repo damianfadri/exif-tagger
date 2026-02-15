@@ -11,11 +11,12 @@ log_msg() {
 process_directory() {
     local dir="$1"
     local source="$2"
+    local name="$3"
     if ! exiftool -m -q -r -if 'not $DateTimeOriginal' \
                 -P -overwrite_original \
                 "-DateTimeOriginal<$source" \
                 "$dir" 2>/dev/null; then
-        log_msg "⚠️ Issues processing ($source): $dir"
+        log_msg "⚠️ Issues processing '$name' ($source): $dir"
     fi
 }
 
@@ -32,14 +33,15 @@ if ! command -v jq &> /dev/null; then
 fi
 
 jq -c '.[]' "$CONFIG_FILE" | while read -r item; do
+    NAME=$(echo "$item" | jq -r '.name')
     DIR=$(echo "$item" | jq -r '.directory')
     MODE=$(echo "$item" | jq -r '.mode')
 
     if [ -d "$DIR" ]; then
-        log_msg "Processing directory: $DIR using $MODE"
-        process_directory "$DIR" "$MODE"
+        log_msg "Processing '$NAME': $DIR using $MODE"
+        process_directory "$DIR" "$MODE" "$NAME"
     else
-        log_msg "⚠️ Directory not found: $DIR"
+        log_msg "⚠️ Directory not found ('$NAME'): $DIR"
     fi
 done
 
