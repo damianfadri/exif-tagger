@@ -1,18 +1,22 @@
 [
   {
+    "name": "Messenger Pictures",
     "directory": "/storage/emulated/0/Pictures/Messenger",
     "mode": "FileModifyDate"
   },
   {
+    "name": "Messenger Movies",
     "directory": "/storage/emulated/0/Movies/Messenger",
     "mode": "FileModifyDate"
   },
   {
+    "name": "Instagram",
     "directory": "/storage/emulated/0/Pictures/Instagram",
     "mode":"Filename"
   },
   {
-    "directory": "/storage/emulated/0/Pictures/GCash",
+    "name": "GCash",
+    "directory": "/storage/emulated/0/Pictures",
     "mode": "${Filename;s/GCash.*(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})(\\d{2}).*/$3:$2:$1 $4:$5:$6/}"
   }
 ]
