@@ -1,4 +1,5 @@
 
+#!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="$SCRIPT_DIR/exif_sync.log"
 CONFIG_FILE="$SCRIPT_DIR/config.json"
@@ -7,23 +8,14 @@ log_msg() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-process_using_filemodifydate() {
+process_directory() {
     local dir="$1"
+    local source="$2"
     if ! exiftool -m -q -r -if 'not $DateTimeOriginal' \
                 -P -overwrite_original \
-                '-DateTimeOriginal<FileModifyDate' \
+                "-DateTimeOriginal<$source" \
                 "$dir" 2>/dev/null; then
-        log_msg "⚠️ Issues processing (FileModifyDate): $dir"
-    fi
-}
-
-process_using_filename() {
-    local dir="$1"
-    if ! exiftool -m -q -r -if 'not $DateTimeOriginal' \
-                -P -overwrite_original \
-                '-DateTimeOriginal<Filename' \
-                "$dir" 2>/dev/null; then
-        log_msg "⚠️ Issues processing (Filename): $dir"
+        log_msg "⚠️ Issues processing ($source): $dir"
     fi
 }
 
@@ -45,11 +37,7 @@ jq -c '.[]' "$CONFIG_FILE" | while read -r item; do
 
     if [ -d "$DIR" ]; then
         log_msg "Processing directory: $DIR using $MODE"
-        if [ "$MODE" = "Filename" ]; then
-            process_using_filename "$DIR"
-        elif [ "$MODE" = "FileModifyDate" ]; then
-            process_using_filemodifydate "$DIR"
-        fi
+        process_directory "$DIR" "$MODE"
     else
         log_msg "⚠️ Directory not found: $DIR"
     fi
