@@ -2,13 +2,11 @@
 
 ## Overview
 
-EXIF Tagger is a lightweight utility designed to automatically restore missing "Date Taken" (`DateTimeOriginal`) metadata for images and videos.
+EXIF Tagger automatically restores missing "Date Taken" metadata for images and videos, fixing gallery sorting issues caused by apps that strip EXIF data.
 
-Many social media apps (like Facebook Messenger, WhatsApp, Twitter/X) or backup solutions strip EXIF metadata or save files without proper timestamps. This causes gallery apps to display photos in the wrong order, often grouping them by the date they were downloaded rather than when they were actually taken.
-
-This tool scans specified directories and applies the correct timestamp based on configurable rules:
-*   **FileModifyDate**: Uses the file's last modification time. This is useful for files downloaded from services that preserve the filesystem timestamp but strip internal metadata.
-*   **Filename**: Extracts the date directly from the filename. This is useful for files named with a pattern (e.g., `IMG_20230101_120000.jpg`) but lacking internal tags.
+It applies timestamps based on configurable rules:
+*   **FileModifyDate**: Uses the file's last modification time.
+*   **Filename**: Extracts the date from the filename.
 
 ## Prerequisites
 1.  Install Termux on your device.
