@@ -46,3 +46,4 @@ jq -c '.[]' "$CONFIG_FILE" | while read -r item; do
 done
 
 log_msg "✅ Sync finished."
+exit 0
