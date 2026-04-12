@@ -23,5 +23,10 @@
     "name": "Screenshots",
     "directory": "/storage/emulated/0/DCIM/Screenshots",
     "mode": "Filename"
+  },
+  {
+    "name": "Reddit",
+    "directory": "/storage/emulated/0/Pictures/Reddit",
+    "mode": "Filename"
   }
 ]
