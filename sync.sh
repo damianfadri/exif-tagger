@@ -14,13 +14,13 @@ process_directory() {
     local name="$3"
     local exif_output
 
-    if ! exif_output=$(exiftool -m -q -r -if 'not $DateTimeOriginal' \
+    exif_output=$(exiftool -m -r -if 'not $DateTimeOriginal' \
                 -P -overwrite_original \
                 "-DateTimeOriginal<$source" \
-                "$dir" 2>&1); then
-        if [ -n "$exif_output" ]; then
-            log_msg "$exif_output"
-        fi
+                "$dir" 2>&1)
+
+    if [ -n "$exif_output" ]; then
+        log_msg "$exif_output"
     fi
 }
 
