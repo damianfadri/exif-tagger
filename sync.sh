@@ -12,11 +12,15 @@ process_directory() {
     local dir="$1"
     local source="$2"
     local name="$3"
-    if ! exiftool -m -q -r -if 'not $DateTimeOriginal' \
+    local exif_output
+
+    exif_output=$(exiftool -m -r -if 'not $DateTimeOriginal' \
                 -P -overwrite_original \
                 "-DateTimeOriginal<$source" \
-                "$dir" 2>/dev/null; then
-        log_msg "⚠️ Issues processing '$name' ($source): $dir"
+                "$dir" 2>&1)
+
+    if [ -n "$exif_output" ]; then
+        log_msg "$exif_output"
     fi
 }
 
