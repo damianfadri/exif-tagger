@@ -18,9 +18,8 @@ process_directory() {
                 -P -overwrite_original \
                 "-DateTimeOriginal<$source" \
                 "$dir" 2>&1); then
-        log_msg "⚠️ Issues processing '$name' ($source): $dir"
         if [ -n "$exif_output" ]; then
-            echo "$exif_output" >> "$LOG_FILE"
+            log_msg "$exif_output"
         fi
     fi
 }
