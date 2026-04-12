@@ -14,7 +14,7 @@ process_directory() {
     local name="$3"
     local exif_output
 
-    exif_output=$(exiftool -m -r -if 'not $DateTimeOriginal' \
+    exif_output=$(exiftool -m -if 'not $DateTimeOriginal' \
                 -P -overwrite_original \
                 "-DateTimeOriginal<$source" \
                 "$dir" 2>&1)
