@@ -28,5 +28,10 @@
     "name": "Reddit",
     "directory": "/storage/emulated/0/Pictures/Reddit",
     "mode": "Filename"
+  },
+  {
+    "name": "Viber",
+    "directory": "/storage/emulated/0/Pictures/Viber",
+    "mode": "FileModifyDate"
   }
 ]
